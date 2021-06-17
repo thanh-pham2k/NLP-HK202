@@ -309,5 +309,3 @@ Các câu mở rộng
 ├── util.py
 ```
 
-
-# NLP-HK-202-TEMP
