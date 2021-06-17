@@ -4,6 +4,25 @@
 Đề bài: Xây dựng hệ thống hỏi đáp đơn giản về các chuyến xe bus liên tỉnh bằng Quan hệ văn phạm
 
 
+# USAGE
+
+## Chạy kiểm tra
+```
+python main.py --question=file_name --grammar=your_grammar
+```
+
+## Yêu cầu
+
+```
+Python                  3.7
+NLTK                    3.6.2
+spacy                   2.2.3
+spacy-legacy            3.0.5
+vi-spacy-model          0.2.1
+
+```
+
+
 # MODEL
 Thứ tự tiến hành như sau:
 
