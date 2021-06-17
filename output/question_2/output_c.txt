@@ -1,0 +1,1 @@
+[Tree('đến_V_ROOT', ['Thời_gian_N_dep', Tree('xe_N_nsubj', ['bus_V_xcomp', 'B3_Ny_compound', Tree('Đà_Nẵng_Np_nmod', ['từ_E_case'])]), 'Huế_Np_obj'])]

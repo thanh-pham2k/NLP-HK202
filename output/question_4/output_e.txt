@@ -1,0 +1,1 @@
+(PRINT-ALL ?f2(BUS ?f2)(ATIME ?f2 HN ?f2)(DTIME ?f2 ?sd ?td)(RUNTIME ?f2  ?sd HN))

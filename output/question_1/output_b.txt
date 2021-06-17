@@ -1,0 +1,9 @@
+Token def.
+a. token.text, b. token.lemma_, c. token.pos_, d. token.tag_, e. token.dep_, f.token.shape_, g. token.is_alpha, h. token.is_stop
+0. a.Xe_bus, b.Xe_bus, c.X, d.N, e.nsubj, f.Xx_xxx, g.False, h.False
+1. a.nào, b.nào, c.X, d.P, e.det, f.xxx, g.True, h.True
+2. a.đến, b.đến, c.X, d.E, e.case, f.xxx, g.True, h.True
+3. a.thành_phố, b.thành_phố, c.X, d.N, e.nmod, f.xxxxxxxxx, g.False, h.False
+4. a.Huế, b.Huế, c.X, d.Np, e.compound, f.xxx, g.True, h.False
+5. a.lúc, b.lúc, c.X, d.N, e.ROOT, f.xxx, g.True, h.True
+6. a.2000HR, b.2000HR, c.X, d.M, e.xcomp, f.ddddXX, g.False, h.False

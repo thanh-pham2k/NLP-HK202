@@ -1,0 +1,1 @@
+(PRINT-ALL ?r2(BUS ?f2)(ATIME ?f2 HUE ?time)(DTIME ?f2 HCMC ?td)(RUNTIME ?f2 B1 HCMC HUE))

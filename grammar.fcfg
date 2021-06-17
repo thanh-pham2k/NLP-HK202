@@ -1,0 +1,230 @@
+<<<<<<< HEAD
+% start S
+S[SEM=<(WHQUERY(?vp(?v,?f),?np,?whq(?f)))>, VAR=?v, GAP=?f] -> WHICH-QUERY[SEM=?whq] BUS-NP[SEM=?np, VAR=?f] BUS-VP[SEM=?vp, VAR=?v]
+S[SEM=<(WHQUERY(?vp(?v,?f,t1),?np,?whq(t1)))>, VAR=?v, GAP=t1] -> TIME-QUERY[SEM=?whq] BUS-NP[SEM=?np, VAR=?f] BUS-VP[SEM=?vp, VAR=?v]
+S[SEM=<(WHQUERY(?vp,?np,?whq(?f)))>, VAR=?v, GAP=?r] -> HOW-LONG-QUERY[SEM=?whq,VAR=?r] BUS-NP[SEM=?np, VAR=?f] BUS-VP[SEM=?vp, VAR=?v]
+
+BUS-NP[SEM=<?det(?cnp)>,VAR=?v] -> DET[SEM=?det] BUS-CNP[SEM=?cnp,VAR=?v]
+BUS-NP[SEM=?cnp, VAR=?v] -> BUS-CNP[SEM=?cnp, VAR=?v]
+
+BUS-CNP[SEM=<?cnp & ?dest(?v)>, VAR=?v] -> BUS-CNP[SEM=?cnp,VAR=?v] BUS-DEST[SEM=?dest]
+BUS-CNP[SEM=<?cnp & ?source(?v)>,VAR=?v]-> BUS-CNP[SEM=?cnp,VAR=?v] BUS-SOURCE[SEM=?source]
+BUS-CNP[SEM=<?cnp & ?x>, VAR=?k] ->BUS-CNP[SEM=?cnp,VAR=?v] BUS-NAME-NP[SEM=?x,VAR=?k]  
+BUS-CNP[SEM=<?n(?v)>, VAR=?v] -> BUS-N[SEM=?n, VAR=?v]
+
+BUS-TIME[SEM=<TIME(?v,?time)>, VAR=?v] -> TIME-MOD[SEM=?time, VAR=?v] | P-TIME[SEM=?p] TIME-MOD[SEM=?time, VAR=?v]
+
+BUS-VP[SEM=<\r f t.?v(r,f,TIME(t))>, VAR=?r] -> BUS-V[SEM=?v, VAR=?r]
+BUS-VP[SEM=<\r f.?v(r,f,?time)>, VAR=?r] -> BUS-V[SEM=?v, VAR=?r] BUS-TIME[SEM=?time]
+BUS-VP[SEM=<?cvp>, VAR=?v] -> BUS-CVP[SEM=?cvp,VAR=?v]
+
+BUS-CVP[SEM=<?cvp & ?cvpp >, VAR=?n] ->BUS-CVP[SEM=?cvp,VAR=?n] BUS-CVP[SEM=?cvpp,VAR=?k]
+BUS-CVP[SEM=?cvp,VAR=?n] -> BUS-CVP-DEST[SEM=?cvp, VAR=?n] | BUS-CVP-SOURCE[SEM=?cvp, VAR=?n]
+
+BUS-CVP-DEST[SEM=<?v(?n) & ?dest(?v)>, VAR=?n] -> BUS-V[SEM=?v, VAR=?n] BUS-DEST[SEM=?dest]
+BUS-CVP-SOURCE[SEM=<?v(?n) & ?source(?v)>, VAR=?n] -> BUS-V[SEM=?v, VAR=?n] BUS-SOURCE[SEM=?source]
+
+BUS-V[SEM=<\r f t.?v(r,f,t)>, VAR=?r] -> ARRIVE-V[SEM=?v, VAR=?r] | DEPARTURE-V[SEM=?v, VAR=?r]
+
+ARRIVE-V[SEM=<\r f t.ARRIVE1(r,f,t)>, VAR=<a1>] -> 'arrives'| 'arrive'
+
+DEPARTURE-V[SEM=<\r f t.DEPART1(r,f,t)>, VAR=<d1>] -> 'departs' | 'depart'
+
+CITY-NP[SEM=<NAME(?v,?x)>,VAR=?v] -> CITY-NAME[SEM=?x,VAR=?v] CITY-N[SEM=?n]
+CITY-NP[SEM=<DET(?x)>,VAR=?v] -> DET[SEM=?det]  CITY-N[SEM=?x, VAR=?v]
+BUS-NAME-NP[SEM=<BUSNAME(?v,?x)>,VAR=?v] -> BUS-NAME[SEM=?x,VAR=?v] 
+
+BUS-SOURCE[SEM=<\f.SOURCE(f) (?y,?x)>,VAR=?y] -> 'from' CITY-NP[SEM=?x, VAR=?y]
+
+BUS-DEST[SEM=<\f.DEST(f,?x)>,VAR=?y] -> 'to' CITY-NP[SEM=?x,VAR=?y]
+BUS-DEST[SEM=<\f.DEST(f,?x)>,VAR=?y] -> 'for' CITY-NP[SEM=?x,VAR=?y]
+BUS-DEST[SEM=<\f.DEST(f,?x)>,VAR=?y] -> 'in' CITY-NP[SEM=?x,VAR=?y]
+
+TIME-QUERY[SEM=<\x.WH(x,WHAT1)>] -> 'What' 'time' 'does' 
+TIME-QUERY[SEM=<\x.WH(x,WHEN1)>] -> 'When' 'does'
+WHICH-QUERY[SEM=<\x.WH(x,WHICH1)>] -> 'Which'
+HOW-LONG-QUERY[SEM=<\x.WH(x,HOWLONG1)>, VAR=<r1>] -> 'How' 'long' 'does'
+
+DET[SEM=<THE>] -> 'the'
+
+BUS-N[SEM=<BUS1>, VAR=<f1>] -> 'bus' | 'buses'
+
+P-TIME[SEM=<AT>] -> 'at'
+P-TIME[SEM=<ON>] -> 'on'
+P-TIME[SEM=<IN>] -> 'in'
+
+CITY-NAME[SEM=<'HCMC'>,VAR=<h1>] -> 'Hồ' 'Chí' 'Minh'
+CITY-NAME[SEM=<'HUE'>,VAR=<h2>] -> 'Huế'
+CITY-NAME[SEM=<'DANANG'>,VAR=<h3>] -> 'Đà' 'Nẵng'
+BUS-NAME[SEM=<'B1'>,VAR=<h4>] -> 'B1'
+BUS-NAME[SEM=<'B2'>,VAR=<h5>] -> 'B2'
+BUS-NAME[SEM=<'B3'>,VAR=<h6>] -> 'B3'
+BUS-NAME[SEM=<'B4'>,VAR=<h7>] -> 'B4'
+BUS-NAME[SEM=<'B5'>,VAR=<h8>] -> 'B5'
+BUS-NAME[SEM=<'B6'>,VAR=<h9>] -> 'B6'
+
+CITY-N[SEM=<CITY>,VAR=<c1>] -> 'city'
+
+TIME-MOD[SEM=<0:00HR>,VAR=<t1>] -> '0:00HR'
+TIME-MOD[SEM=<0:30HR>,VAR=<t1>] -> '0:30HR'
+TIME-MOD[SEM=<1:00HR>,VAR=<t1>] -> '1:00HR'
+TIME-MOD[SEM=<1:30HR>,VAR=<t1>] -> '1:30HR'
+TIME-MOD[SEM=<2:00HR>,VAR=<t1>] -> '2:00HR'
+TIME-MOD[SEM=<2:30HR>,VAR=<t1>] -> '2:30HR'
+TIME-MOD[SEM=<3:00HR>,VAR=<t1>] -> '3:00HR'
+TIME-MOD[SEM=<3:30HR>,VAR=<t1>] -> '3:30HR'
+TIME-MOD[SEM=<4:00HR>,VAR=<t1>] -> '4:00HR'
+TIME-MOD[SEM=<4:30HR>,VAR=<t1>] -> '4:30HR'
+TIME-MOD[SEM=<05:00HR>,VAR=<t1>] -> '05:00HR'
+TIME-MOD[SEM=<5:30HR>,VAR=<t1>] -> '5:30HR'
+TIME-MOD[SEM=<6:00HR>,VAR=<t1>] -> '6:00HR'
+TIME-MOD[SEM=<6:30HR>,VAR=<t1>] -> '6:30HR'
+TIME-MOD[SEM=<7:00HR>,VAR=<t1>] -> '7:00HR'
+TIME-MOD[SEM=<7:30HR>,VAR=<t1>] -> '7:30HR'
+TIME-MOD[SEM=<8:00HR>,VAR=<t1>] -> '8:00HR'
+TIME-MOD[SEM=<8:30HR>,VAR=<t1>] -> '8:30HR'
+TIME-MOD[SEM=<9:00HR>,VAR=<t1>] -> '9:00HR'
+TIME-MOD[SEM=<9:30HR>,VAR=<t1>] -> '9:30HR'
+TIME-MOD[SEM=<10:00HR>,VAR=<t1>] -> '10:00HR'
+TIME-MOD[SEM=<10:30HR>,VAR=<t1>] -> '10:30HR'
+TIME-MOD[SEM=<11:00HR>,VAR=<t1>] -> '11:00HR'
+TIME-MOD[SEM=<11:30HR>,VAR=<t1>] -> '11:30HR'
+TIME-MOD[SEM=<12:00HR>,VAR=<t1>] -> '12:00HR'
+TIME-MOD[SEM=<12:30HR>,VAR=<t1>] -> '12:30HR'
+TIME-MOD[SEM=<13:00HR>,VAR=<t1>] -> '13:00HR'
+TIME-MOD[SEM=<13:30HR>,VAR=<t1>] -> '13:30HR'
+TIME-MOD[SEM=<14:00HR>,VAR=<t1>] -> '14:00HR'
+TIME-MOD[SEM=<14:30HR>,VAR=<t1>] -> '14:30HR'
+TIME-MOD[SEM=<15:00HR>,VAR=<t1>] -> '15:00HR'
+TIME-MOD[SEM=<15:30HR>,VAR=<t1>] -> '15:30HR'
+TIME-MOD[SEM=<16:00HR>,VAR=<t1>] -> '16:00HR'
+TIME-MOD[SEM=<16:30HR>,VAR=<t1>] -> '16:30HR'
+TIME-MOD[SEM=<17:00HR>,VAR=<t1>] -> '17:00HR'
+TIME-MOD[SEM=<17:30HR>,VAR=<t1>] -> '17:30HR'
+TIME-MOD[SEM=<18:00HR>,VAR=<t1>] -> '18:00HR'
+TIME-MOD[SEM=<18:30HR>,VAR=<t1>] -> '18:30HR'
+TIME-MOD[SEM=<19:00HR>,VAR=<t1>] -> '19:00HR'
+TIME-MOD[SEM=<19:30HR>,VAR=<t1>] -> '19:30HR'
+TIME-MOD[SEM=<20:00HR>,VAR=<t1>] -> '20:00HR'
+TIME-MOD[SEM=<20:30HR>,VAR=<t1>] -> '20:30HR'
+TIME-MOD[SEM=<21:00HR>,VAR=<t1>] -> '21:00HR'
+TIME-MOD[SEM=<21:30HR>,VAR=<t1>] -> '21:30HR'
+TIME-MOD[SEM=<22:00HR>,VAR=<t1>] -> '22:00HR'
+TIME-MOD[SEM=<22:30HR>,VAR=<t1>] -> '22:30HR'
+TIME-MOD[SEM=<23:00HR>,VAR=<t1>] -> '23:00HR'
+=======
+% start S
+S[SEM=<(WHQUERY(?vp(?v,?f),?np,?whq(?f)))>, VAR=?v, GAP=?f] -> WHICH-QUERY[SEM=?whq] BUS-NP[SEM=?np, VAR=?f] BUS-VP[SEM=?vp, VAR=?v]
+S[SEM=<(WHQUERY(?vp(?v,?f,t1),?np,?whq(t1)))>, VAR=?v, GAP=t1] -> TIME-QUERY[SEM=?whq] BUS-NP[SEM=?np, VAR=?f] BUS-VP[SEM=?vp, VAR=?v]
+S[SEM=<(WHQUERY(?vp,?np,?whq(?f)))>, VAR=?v, GAP=?r] -> HOW-LONG-QUERY[SEM=?whq,VAR=?r] BUS-NP[SEM=?np, VAR=?f] BUS-VP[SEM=?vp, VAR=?v]
+
+BUS-NP[SEM=<?det(?cnp)>,VAR=?v] -> DET[SEM=?det] BUS-CNP[SEM=?cnp,VAR=?v]
+BUS-NP[SEM=?cnp, VAR=?v] -> BUS-CNP[SEM=?cnp, VAR=?v]
+
+BUS-CNP[SEM=<?cnp & ?dest(?v)>, VAR=?v] -> BUS-CNP[SEM=?cnp,VAR=?v] BUS-DEST[SEM=?dest]
+BUS-CNP[SEM=<?cnp & ?source(?v)>,VAR=?v]-> BUS-CNP[SEM=?cnp,VAR=?v] BUS-SOURCE[SEM=?source]
+BUS-CNP[SEM=<?cnp & ?x>, VAR=?k] ->BUS-CNP[SEM=?cnp,VAR=?v] BUS-NAME-NP[SEM=?x,VAR=?k]  
+BUS-CNP[SEM=<?n(?v)>, VAR=?v] -> BUS-N[SEM=?n, VAR=?v]
+
+BUS-TIME[SEM=<TIME(?v,?time)>, VAR=?v] -> TIME-MOD[SEM=?time, VAR=?v] | P-TIME[SEM=?p] TIME-MOD[SEM=?time, VAR=?v]
+
+BUS-VP[SEM=<\r f t.?v(r,f,TIME(t))>, VAR=?r] -> BUS-V[SEM=?v, VAR=?r]
+BUS-VP[SEM=<\r f.?v(r,f,?time)>, VAR=?r] -> BUS-V[SEM=?v, VAR=?r] BUS-TIME[SEM=?time]
+BUS-VP[SEM=<?cvp>, VAR=?v] -> BUS-CVP[SEM=?cvp,VAR=?v]
+
+BUS-CVP[SEM=<?cvp & ?cvpp >, VAR=?n] ->BUS-CVP[SEM=?cvp,VAR=?n] BUS-CVP[SEM=?cvpp,VAR=?k]
+BUS-CVP[SEM=?cvp,VAR=?n] -> BUS-CVP-DEST[SEM=?cvp, VAR=?n] | BUS-CVP-SOURCE[SEM=?cvp, VAR=?n]
+
+BUS-CVP-DEST[SEM=<?v(?n) & ?dest(?v)>, VAR=?n] -> BUS-V[SEM=?v, VAR=?n] BUS-DEST[SEM=?dest]
+BUS-CVP-SOURCE[SEM=<?v(?n) & ?source(?v)>, VAR=?n] -> BUS-V[SEM=?v, VAR=?n] BUS-SOURCE[SEM=?source]
+
+BUS-V[SEM=<\r f t.?v(r,f,t)>, VAR=?r] -> ARRIVE-V[SEM=?v, VAR=?r] | DEPARTURE-V[SEM=?v, VAR=?r]
+
+ARRIVE-V[SEM=<\r f t.ARRIVE1(r,f,t)>, VAR=<a1>] -> 'arrives'| 'arrive'
+
+DEPARTURE-V[SEM=<\r f t.DEPART1(r,f,t)>, VAR=<d1>] -> 'departs' | 'depart'
+
+CITY-NP[SEM=<NAME(?v,?x)>,VAR=?v] -> CITY-NAME[SEM=?x,VAR=?v] CITY-N[SEM=?n]
+CITY-NP[SEM=<DET(?x)>,VAR=?v] -> DET[SEM=?det]  CITY-N[SEM=?x, VAR=?v]
+BUS-NAME-NP[SEM=<BUSNAME(?v,?x)>,VAR=?v] -> BUS-NAME[SEM=?x,VAR=?v] 
+
+BUS-SOURCE[SEM=<\f.SOURCE(f) (?y,?x)>,VAR=?y] -> 'from' CITY-NP[SEM=?x, VAR=?y]
+
+BUS-DEST[SEM=<\f.DEST(f,?x)>,VAR=?y] -> 'to' CITY-NP[SEM=?x,VAR=?y]
+BUS-DEST[SEM=<\f.DEST(f,?x)>,VAR=?y] -> 'for' CITY-NP[SEM=?x,VAR=?y]
+BUS-DEST[SEM=<\f.DEST(f,?x)>,VAR=?y] -> 'in' CITY-NP[SEM=?x,VAR=?y]
+
+TIME-QUERY[SEM=<\x.WH(x,WHAT1)>] -> 'What' 'time' 'does' 
+TIME-QUERY[SEM=<\x.WH(x,WHEN1)>] -> 'When' 'does'
+WHICH-QUERY[SEM=<\x.WH(x,WHICH1)>] -> 'Which'
+HOW-LONG-QUERY[SEM=<\x.WH(x,HOWLONG1)>, VAR=<r1>] -> 'How' 'long' 'does'
+
+DET[SEM=<THE>] -> 'the'
+
+BUS-N[SEM=<BUS1>, VAR=<f1>] -> 'bus' | 'buses'
+
+P-TIME[SEM=<AT>] -> 'at'
+P-TIME[SEM=<ON>] -> 'on'
+P-TIME[SEM=<IN>] -> 'in'
+
+CITY-NAME[SEM=<'HCMC'>,VAR=<h1>] -> 'Hồ' 'Chí' 'Minh'
+CITY-NAME[SEM=<'HUE'>,VAR=<h2>] -> 'Huế'
+CITY-NAME[SEM=<'DANANG'>,VAR=<h3>] -> 'Đà' 'Nẵng'
+BUS-NAME[SEM=<'B1'>,VAR=<h4>] -> 'B1'
+BUS-NAME[SEM=<'B2'>,VAR=<h5>] -> 'B2'
+BUS-NAME[SEM=<'B3'>,VAR=<h6>] -> 'B3'
+BUS-NAME[SEM=<'B4'>,VAR=<h7>] -> 'B4'
+BUS-NAME[SEM=<'B5'>,VAR=<h8>] -> 'B5'
+BUS-NAME[SEM=<'B6'>,VAR=<h9>] -> 'B6'
+
+CITY-N[SEM=<CITY>,VAR=<c1>] -> 'city'
+
+TIME-MOD[SEM=<0:00HR>,VAR=<t1>] -> '0:00HR'
+TIME-MOD[SEM=<0:30HR>,VAR=<t1>] -> '0:30HR'
+TIME-MOD[SEM=<1:00HR>,VAR=<t1>] -> '1:00HR'
+TIME-MOD[SEM=<1:30HR>,VAR=<t1>] -> '1:30HR'
+TIME-MOD[SEM=<2:00HR>,VAR=<t1>] -> '2:00HR'
+TIME-MOD[SEM=<2:30HR>,VAR=<t1>] -> '2:30HR'
+TIME-MOD[SEM=<3:00HR>,VAR=<t1>] -> '3:00HR'
+TIME-MOD[SEM=<3:30HR>,VAR=<t1>] -> '3:30HR'
+TIME-MOD[SEM=<4:00HR>,VAR=<t1>] -> '4:00HR'
+TIME-MOD[SEM=<4:30HR>,VAR=<t1>] -> '4:30HR'
+TIME-MOD[SEM=<05:00HR>,VAR=<t1>] -> '05:00HR'
+TIME-MOD[SEM=<5:30HR>,VAR=<t1>] -> '5:30HR'
+TIME-MOD[SEM=<6:00HR>,VAR=<t1>] -> '6:00HR'
+TIME-MOD[SEM=<6:30HR>,VAR=<t1>] -> '6:30HR'
+TIME-MOD[SEM=<7:00HR>,VAR=<t1>] -> '7:00HR'
+TIME-MOD[SEM=<7:30HR>,VAR=<t1>] -> '7:30HR'
+TIME-MOD[SEM=<8:00HR>,VAR=<t1>] -> '8:00HR'
+TIME-MOD[SEM=<8:30HR>,VAR=<t1>] -> '8:30HR'
+TIME-MOD[SEM=<9:00HR>,VAR=<t1>] -> '9:00HR'
+TIME-MOD[SEM=<9:30HR>,VAR=<t1>] -> '9:30HR'
+TIME-MOD[SEM=<10:00HR>,VAR=<t1>] -> '10:00HR'
+TIME-MOD[SEM=<10:30HR>,VAR=<t1>] -> '10:30HR'
+TIME-MOD[SEM=<11:00HR>,VAR=<t1>] -> '11:00HR'
+TIME-MOD[SEM=<11:30HR>,VAR=<t1>] -> '11:30HR'
+TIME-MOD[SEM=<12:00HR>,VAR=<t1>] -> '12:00HR'
+TIME-MOD[SEM=<12:30HR>,VAR=<t1>] -> '12:30HR'
+TIME-MOD[SEM=<13:00HR>,VAR=<t1>] -> '13:00HR'
+TIME-MOD[SEM=<13:30HR>,VAR=<t1>] -> '13:30HR'
+TIME-MOD[SEM=<14:00HR>,VAR=<t1>] -> '14:00HR'
+TIME-MOD[SEM=<14:30HR>,VAR=<t1>] -> '14:30HR'
+TIME-MOD[SEM=<15:00HR>,VAR=<t1>] -> '15:00HR'
+TIME-MOD[SEM=<15:30HR>,VAR=<t1>] -> '15:30HR'
+TIME-MOD[SEM=<16:00HR>,VAR=<t1>] -> '16:00HR'
+TIME-MOD[SEM=<16:30HR>,VAR=<t1>] -> '16:30HR'
+TIME-MOD[SEM=<17:00HR>,VAR=<t1>] -> '17:00HR'
+TIME-MOD[SEM=<17:30HR>,VAR=<t1>] -> '17:30HR'
+TIME-MOD[SEM=<18:00HR>,VAR=<t1>] -> '18:00HR'
+TIME-MOD[SEM=<18:30HR>,VAR=<t1>] -> '18:30HR'
+TIME-MOD[SEM=<19:00HR>,VAR=<t1>] -> '19:00HR'
+TIME-MOD[SEM=<19:30HR>,VAR=<t1>] -> '19:30HR'
+TIME-MOD[SEM=<20:00HR>,VAR=<t1>] -> '20:00HR'
+TIME-MOD[SEM=<20:30HR>,VAR=<t1>] -> '20:30HR'
+TIME-MOD[SEM=<21:00HR>,VAR=<t1>] -> '21:00HR'
+TIME-MOD[SEM=<21:30HR>,VAR=<t1>] -> '21:30HR'
+TIME-MOD[SEM=<22:00HR>,VAR=<t1>] -> '22:00HR'
+TIME-MOD[SEM=<22:30HR>,VAR=<t1>] -> '22:30HR'
+TIME-MOD[SEM=<23:00HR>,VAR=<t1>] -> '23:00HR'
+>>>>>>> 6c280917f551248d6170673b6d3ab3bdce012b91
+TIME-MOD[SEM=<23:30HR>,VAR=<t1>] -> '23:30HR'

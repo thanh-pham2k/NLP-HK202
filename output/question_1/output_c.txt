@@ -1,0 +1,1 @@
+[Tree('lúc_N_ROOT', [Tree('Xe_bus_N_nsubj', ['nào_P_det', Tree('thành_phố_N_nmod', ['đến_E_case', 'Huế_Np_compound'])]), '2000HR_M_xcomp'])]
