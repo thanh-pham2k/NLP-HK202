@@ -8,7 +8,7 @@
 
 ## Chạy kiểm tra
 ```
-python main.py --question=file_name --grammar=your_grammar
+python main.py --question_file=file_name --grammar=your_grammar
 ```
 
 ## Yêu cầu
